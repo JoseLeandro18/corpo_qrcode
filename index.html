@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Davi ❤ Ivin</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Parkinsans:wght@300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Parkinsans:wght@300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        /* Estilo geral */
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #300336 0%, #4b0191 100%);
+            color: #333;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-family: 'Parkinsans', sans-serif;
+            font-size: 2.5rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        /* Estilo do QR Code */
+        .qr-code {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #fff;
+            border: 5px solid #ff9a9e;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .qr-code img {
+            width: 200px;
+            height: 200px;
+        }
+
+        /* Estilo do carrossel */
+        .carousel {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel img {
+            margin-top: 2rem;
+            width: 100%;
+            /* Preenche horizontalmente */
+            height: 500px;
+            /* Altura fixa */
+            object-fit: cover;
+            /* Ajusta o conteúdo sem distorcer */
+            display: none;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+
+        .carousel img.active {
+            display: block;
+        }
+
+        .footer {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #photo-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ccc;
+            /* Bolinha normal */
+            transition: background-color 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: #ff9a9e;
+            /* Bolinha ativa */
+            transform: scale(1.2);
+            /* Destaque da bolinha ativa */
+        }
+
+
+        /* Estilo do contador */
+        .timer {
+            background: white;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 0.5rem;
+            width: 100%;
+            max-width: 300px;
+            height: 50px;
+            box-shadow: 1px -1px 20px 0px rgb(247, 1, 255);
+        }
+
+        .timer p {
+            margin: 10px 0;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #4b0191;
+        }
+
+        .music-player {
+            margin-top: 20px;
+            background: transparent;
+            padding: 10px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .music-player audio {
+            width: 100%;
+        }
+
+
+        .text p {
+            font-family: 'Parkinsans', sans-serif;
+            font-style: italic;
+            width: 400px;
+            color: white;
+        }
+
+        .legend p {
+            font-family: 'Dancing Script', sans-serif;
+            font-size: 4rem;
+            padding: 1;
+            width: 400px;
+            color: white;
+        }
+
+        #heart {
+            color: red;
+        }
+
+        /* Layout responsivo */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .timer p {
+                font-size: 1rem;
+            }
+
+            .qr-code img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Carrossel de imagens -->
+    <div class="carousel">
+        <img src="imgs/IMG-20241212-WA0022.jpg" class="active" alt="Foto 1">
+        <img src="imgs/IMG-20241212-WA0023.jpg" alt="Foto 2">
+        <img src="imgs/IMG-20241212-WA0024.jpg" alt="Foto 3">
+        <img src="imgs/IMG-20241212-WA0025.jpg" alt="Foto 4">
+        <img src="imgs/IMG-20241212-WA0026.jpg" alt="Foto 5">
+        <img src="imgs/IMG-20241212-WA0027.jpg" alt="Foto 6">
+    </div>
+
+    <!-- Rodapé com bolinhas -->
+    <div class="footer">
+        <div id="photo-dots"></div>
+    </div>
+
+    <h1>Davi <Span id="heart">❤</Span> Ivin</h1>
+
+    <!-- Texto de Amor -->
+    <div class="text">
+        <p>Be, desde quando eu realmente entendi que realmente estávamos buscando o mesmo propósito de vida, algo mudou em mim em relação a nós. Entendi que tinha encontrado alguém muito importante para mim, e aos poucos fui percebendo que ainda tinha aquele algo amais em você, encontrei o amor da minha vida! Você faz com que meus dias sejam cada vez mais feliz e estressante. Um misto de sentimentos em 24hrs, vivemos sempre intensamente e nunca deixamos de demonstrar nossos sentimentos. Você me faz bem, e isso não pode mudar nunca, e se começar a mudar garanto que faço de tudo para nos entendermos. Por mais Clichê que seja, eu te amo, Ivin! Você será a mãe dos meus mlkote, tmj! 愛してます</p>
+    </div>
+
+    <!-- Legenda -->
+
+    <div class="legend">
+        <p>Juntos Há</p>
+    </div>
+
+    <!-- Contador -->
+    <div class="timer">
+        <p id="years"></p>
+    </div>
+
+    <div class="timer">
+        <p id="months"></p>
+    </div>
+
+    <div class="timer">
+        <p id="days"></p>
+    </div>
+
+    <div class="timer">
+        <p id="hours"></p>
+    </div>
+
+    <div class="timer">
+        <p id="minutes"></p>
+    </div>
+
+    <div class="timer">
+        <p id="seconds"></p>
+    </div>
+
+    <!-- Mixer de Música -->
+    <div class="music-player">
+        <audio id="audio-player" controls>
+            <source src="mp4/Luan Santana - Tudo que você quiser - (DVD O nosso tempo é hoje).mp4" type="audio/mpeg">
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
+    </div>
+
+
+    <script>
+        // Dados do relacionamento
+        const startDate = new Date('2024-09-23T00:00:00'); // Data de início do relacionamento
+
+        // Atualiza o contador
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            // Cálculos
+            const years = now.getFullYear() - startDate.getFullYear();
+            const months = years * 12 + (now.getMonth() - startDate.getMonth());
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            // Atualiza os elementos HTML
+            document.getElementById('years').textContent = `Anos: ${years}`;
+            document.getElementById('months').textContent = `Mêses: ${months % 12}`;
+            document.getElementById('days').textContent = `Dias: ${days}`;
+            document.getElementById('hours').textContent = `Horas: ${hours}`;
+            document.getElementById('minutes').textContent = `Minutos: ${minutes}`;
+            document.getElementById('seconds').textContent = `Segundos: ${seconds}`;
+        }
+
+        // Inicializa o contador e atualiza a cada segundo
+        updateCounter();
+        setInterval(updateCounter, 1000);
+
+        // Lógica do carrossel
+        const images = document.querySelectorAll('.carousel img');
+        let currentIndex = 0;
+
+        function showNextImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
+        }
+
+        // Cria as bolinhas no rodapé
+        function createPhotoDots() {
+            const totalImages = images.length;
+            const dotsContainer = document.getElementById('photo-dots');
+            for (let i = 0; i < totalImages; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active'); // Marca a primeira como ativa
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        const audioPlayer = document.getElementById('audio-player');
+
+        // Exemplo: Iniciar música ao carregar a página
+        //audioPlayer.play();
+
+        // Exemplo: Pausar música após 30 segundos
+        //setTimeout(() => audioPlayer.pause(), 30000);
+
+
+        // Atualiza as bolinhas para refletir a foto atual
+        function updatePhotoDots() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        // Inicializa as bolinhas
+        createPhotoDots();
+
+        // Atualiza bolinhas junto com o carrossel
+        setInterval(() => {
+            showNextImage();
+            updatePhotoDots();
+        }, 2000);
+
+
+    </script>
+</body>
+
+</html>
